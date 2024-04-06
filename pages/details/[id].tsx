@@ -1,10 +1,12 @@
 import React from 'react'
 import axios from 'axios'
+import Layout from '../layout'
+
 const Details = () => {
   return (
-    <div>
-      
-    </div>
+    <Layout>
+      <div className="details"></div>
+    </Layout>
   )
 }
 
