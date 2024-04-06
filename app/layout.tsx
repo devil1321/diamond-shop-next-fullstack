@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Nav from "./components/global/nav.component";
+import Footer from "./components/global/footer.component";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="container">
+          <WithRedux>
+            <Nav />
+            {children}
+            <Footer />
+          </WithRedux>
+        </div>
+      </body>
     </html>
   );
+}
+
+
+const WithRedux:React.FC<{ children:React.ReactNode }> = ({children}) =>{
+  return(
+    <div className="main">{children}</div>
+  )
 }
