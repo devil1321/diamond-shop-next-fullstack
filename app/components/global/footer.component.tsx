@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 const Footer = () => {
   return (
-    <div className='footer mt-12'>
+    <div className='footer mt-12 max-w-[100vw]'>
       <div className="footer-main px-12 border-y-[1px] border-gray-200 md:flex md:justify-between md:items-center">
         <div className="footer-col md:w-1/4">
           <Image src="/assets/footer-logo.png" alt='footer-logo' width={200} height={50} />

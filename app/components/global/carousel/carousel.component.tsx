@@ -4,7 +4,7 @@ import Details from './details.component'
 
 const Carousel = () => {
   return (
-    <div className='carousel mb-[400px] relative top-0 left-0'>
+    <div className='carousel relative top-0 left-0'>
       <View />
       <Details />
     </div>

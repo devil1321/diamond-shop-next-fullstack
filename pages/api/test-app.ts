@@ -1,4 +1,3 @@
-
 import { NextApiRequest,NextApiResponse } from 'next'
 import client from '@/prisma/prisma'
 import bcrypt from 'bcrypt'
@@ -6,16 +5,14 @@ import jwt from 'jsonwebtoken'
 
 
 export default async function handler(req:NextApiRequest,res:NextApiResponse){
-
     if(req.method === 'POST'){
-        const { email , password } = req.body
         const User = await client.userShop.findFirst({where:{
             // @ts-ignore
-            email:email
+            email:'test@gmail.com'
         }})
         if(User){
             // @ts-ignore
-            bcrypt.compare(password, User.password as string, async function(err, result) {
+            bcrypt.compare('test', User.password as string, async function(err, result) {
                 if(result){
                     const token = jwt.sign(User,process.env.JWT_SECRET as string)
                     const disconnected = await client.$disconnect()

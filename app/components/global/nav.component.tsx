@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Nav = () => {
   return (
-    <div className='nav px-12 border-b-[1px] border-gray-200 py-6'>
+    <div className='nav max-w-[100vw] px-12  py-6'>
       <div className="nav-menu lg:flex lg:justify-end lg:gap-5">
         <Link href="/home" className='hover:underline hover:opacity-50 flex items-center'>
           <Image className="mr-2" src="/assets/home-icon.png" alt='home-icon' width={30} height={30} />

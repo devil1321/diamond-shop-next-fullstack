@@ -6,7 +6,7 @@ import apiReducer from './api.reducer'
 export const reducers = combineReducers({
     ui:uiReducer,
     shop:shopReducer,
-    apiReducer:apiReducer
+    api:apiReducer
 })
 
 export type State = ReturnType<typeof reducers>

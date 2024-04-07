@@ -36,7 +36,7 @@ const View = () => {
           if (window.innerWidth >= 1280) {
               setGrid(25);
           } else if (window.innerWidth < 1280 && window.innerWidth >= 768) {
-              setGrid(15);
+              setGrid(10);
           } else {
               setGrid(10);
           }
@@ -69,17 +69,31 @@ const View = () => {
   
 const handleBackgroundPostion = () =>{
     let tmpCells:any[] = []
-    tmpCells = cells.map((c:any) => {    
+    for(let i = 0; i < cells.length; i++){
       posx.current++
       if(posx.current * cw > wrapperRef.current.clientWidth ){
         posx.current = 1
         posy.current++
       }
-      return{
-        w:(-cw * posx.current) - 400,
-        h:(-ch * posy.current)
+      if(posy.current < grid){
+        if(typeof window !== 'undefined'){
+          if(window.innerWidth > 1366){
+            tmpCells.push({
+              w:(-cw * posx.current),
+              h:(-ch * posy.current)
+            })
+          }else{
+            tmpCells.push({
+              w:(-cw * posx.current) - 400,
+              h:(-ch * posy.current)
+            })
+          }
+        }
+        
+      }else{
+        break
       }
-    })
+    }
     setCells(tmpCells)
   }
   
@@ -125,12 +139,12 @@ const handleBackgroundPostion = () =>{
   },[carouselCount])
 
   return (
-    <div ref={wrapperRef} className='carousel-view-wrapper w-[100vw] h-[80vh]'>
-      <div className="carousel-buttons absolute z-10 top-1/2 -translate-y-1/2 left-0 flex w-[100%] h-[40px] justify-between">
+    <div ref={wrapperRef} className='carousel-view-wrapper w-[100vw] h-[100vh] md:h-[50vh] lg:h-[90vh] overflow-y-clip'>
+      <div className="carousel-buttons absolute z-10 top-1/2 -translate-y-1/2 left-0 flex w-[95vw] h-[40px] justify-between">
         <div className="carousel-prev cursor-pointer ml-12 px-4 py-2 rounded-full bg-gray-500/50 hover:bg-gray-300/50 text-white font-bold" onClick={()=>handlePrev()}>&lt;</div>
         <div className="carousel-next cursor-pointer mr-12 px-4 py-2 rounded-full bg-gray-500/50 hover:bg-gray-300/50 text-white font-bold" onClick={()=>handleNext()}>&gt;</div>
       </div>
-      <div className="carousel-view  my-2 md:my-0 mx-auto relative top-0 left-0 flex flex-wrap justify-start items-start">
+      <div className="carousel-view my-2 md:my-0 mx-auto relative top-0 left-0 flex flex-wrap justify-start items-start">
         {cells.map((c:any,i:number)=>{
           return <div key={`cell-${i}`} style={{
             backgroundImage:`url('${srcs[carouselCount]}')`,
