@@ -14,12 +14,13 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         try{
             bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS as string),(err,salt)=>{
                 bcrypt.hash(user.password as string, salt, async function(err, hash){ 
-                    const User = await client.userShop.update({
+                    const User = await client.usershop.update({
                         where:{
                             id:user.id
                         },
                         data:{
                             nickname:user.nickname,
+                            // @ts-ignore
                             email:user.email,
                             password:hash,
                             first_name:user.first_name,

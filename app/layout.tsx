@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
           <WithRedux>
             <Nav />
-            <div className="container">
+            <div className="container-fluid">
               {children}
             </div>
             <Footer />

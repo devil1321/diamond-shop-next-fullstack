@@ -11,7 +11,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     if(req.method === 'POST'){
         try {
             const { nickname, email, password_1, password_2,first_name,last_name, city, zip , phone } = req.body
-                const User = await client.userShop.findFirst({where:{
+                const User = await client.usershop.findFirst({where:{
                     // @ts-ignore
                     email:email
                 }})

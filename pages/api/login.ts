@@ -9,7 +9,7 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
 
     if(req.method === 'POST'){
         const { email , password } = req.body
-        const User = await client.userShop.findFirst({where:{
+        const User = await client.usershop.findFirst({where:{
             // @ts-ignore
             email:email
         }})
