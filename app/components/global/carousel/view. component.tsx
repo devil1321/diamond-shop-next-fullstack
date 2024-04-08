@@ -38,7 +38,7 @@ const View = () => {
           } else if (window.innerWidth < 1280 && window.innerWidth >= 768) {
               setGrid(10);
           } else {
-              setGrid(10);
+              setGrid(5);
           }
         }   
     }
@@ -140,7 +140,7 @@ const handleBackgroundPostion = () =>{
 
   return (
     <div ref={wrapperRef} className='carousel-view-wrapper w-[100vw] h-[100vh] md:h-[50vh] lg:h-[90vh] overflow-y-clip'>
-      <div className="carousel-buttons absolute z-10 top-1/2 -translate-y-1/2 left-0 flex w-[95vw] h-[40px] justify-between">
+      <div className="carousel-buttons absolute z-20 top-1/2 -translate-y-1/2 left-0 flex w-[95vw] h-[40px] justify-between">
         <div className="carousel-prev cursor-pointer ml-12 px-4 py-2 rounded-full bg-gray-500/50 hover:bg-gray-300/50 text-white font-bold" onClick={()=>handlePrev()}>&lt;</div>
         <div className="carousel-next cursor-pointer mr-12 px-4 py-2 rounded-full bg-gray-500/50 hover:bg-gray-300/50 text-white font-bold" onClick={()=>handleNext()}>&gt;</div>
       </div>

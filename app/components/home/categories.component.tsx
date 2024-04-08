@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React from 'react'   
 import Image from 'next/image'
 import Link from 'next/link'
 import gsap from 'gsap'
@@ -60,9 +60,8 @@ const Categories = () => {
   }
 
   return (
-    <div className='categories md:flex md:justify-center md:items-start md:gap-5'>
-      <div className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0-col w-1/3 overflow-hidden">
-
+    <div className='categories flex-col md:flex-row md:flex md:justify-center md:items-start md:gap-5'>
+      <div className="categories-category cursor-pointer hover:shadow-lg transition-all mb-5 md:mb-0 hover:shadow-gray-500  relative top-0 left-0-col w-[100%] md:w-1/3 overflow-hidden md:h-[535px] lg:h-max">
         <Link href="/products">
             <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer  relative top-0 left-0 w-max h-max">
                 <Image src="/assets/category-1.png" alt='' width={470} height={600} />
@@ -71,7 +70,7 @@ const Categories = () => {
             </div>
         </Link>
       </div>
-      <div className="categories-category cursor-pointer relative top-0 left-0-col w-1/3 flex flex-col justify-start items-center gap-5">
+      <div className="categories-category mb-5 md:mb-0 cursor-pointer relative top-0 left-0-col w-[100%] md:w-1/3 flex flex-col justify-start items-center gap-5">
       <Link href="/products">
         <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0">
             <Image src="/assets/category-2.png" alt='' width={400} height={600} />
@@ -87,7 +86,7 @@ const Categories = () => {
         </div>
       </Link>
       </div>
-      <div className="categories-category cursor-pointer relative top-0 left-0-col w-1/3 flex flex-col justify-start items-center gap-5">
+      <div className="categories-category cursor-pointer relative top-0 left-0-col w-[100%] md:w-1/3 flex flex-col justify-start items-center gap-5">
       <Link href="/products">
         <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0">
             <Image src="/assets/category-4.png" alt='' width={400} height={600} />

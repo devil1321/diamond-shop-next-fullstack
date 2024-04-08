@@ -5,9 +5,12 @@ import "./globals.css";
 import "./normalize.css";
 import Nav from "./components/global/nav.component";
 import Footer from "./components/global/footer.component";
-import React from "react";
-import store from "./controller/store";
+import React, { useEffect } from "react";
+import store from "@/app/controller/store";
 import { Provider } from "react-redux";
+import * as ApiActions from '@/app/controller/action-creators/api.action-creators'
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-          <WithRedux>
+        <Provider store={store}>
             <Nav />
             <div className="container-fluid">
-              {children}
+              <WithRedux>
+                {children}
+              </WithRedux>
             </div>
             <Footer />
-          </WithRedux>
+        </Provider>
       </body>
     </html>
   );
@@ -33,9 +38,15 @@ export default function RootLayout({
 
 
 const WithRedux:React.FC<{ children:React.ReactNode }> = ({children}) =>{
+
+  const dispatch = useDispatch()
+  const APIActions = bindActionCreators(ApiActions,dispatch)
+
+  useEffect(()=>{
+    APIActions.setProducts()
+  },[])
+
   return(
-    <Provider store={store}>
       <div className="main">{children}</div>
-    </Provider>
   )
 }

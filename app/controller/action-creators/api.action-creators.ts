@@ -92,7 +92,7 @@ export const getUser = () => async (dispatch:Dispatch)=>{
 }
 export const setProducts = () => async(dispatch:Dispatch)=>{
     try{
-        const res = await axios.get('/assets/products.json')
+        const res = await axios.get('/db/products.json')
         const data = await res.data
         dispatch({
             type:APITypes.API_SET_PRODUCTS,
@@ -221,7 +221,7 @@ export const updateProfile = (user:Interfaces.User) => async(dispatch:Dispatch) 
 }
 export const filterProducts = (min:number,max:number,color:string) => async(dispatch:Dispatch) =>{
     try{
-        const res = await axios.get('/assets/products.json')
+        const res = await axios.get('/db/products.json')
         let products = await res.data
         products = products.filter((p:Interfaces.Product) => {
             if(p.price > min && p.price < max){

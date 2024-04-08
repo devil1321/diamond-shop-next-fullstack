@@ -16,7 +16,7 @@ const Footer = () => {
           </div>
           <div className="footer-info-field my-2 flex items-start gap-3">
             <Image src="/assets/address-icon.png" alt='' width={20} height={20} />
-            <div>
+            <div className='mt-12 md:mt-0'>
               <p>Houston Road 34</p>
               <p>Seattle 200-40004</p>
             </div>
