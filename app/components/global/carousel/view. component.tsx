@@ -118,7 +118,11 @@ const handleBackgroundPostion = () =>{
   }
 
   const handleAnimate = () =>{
-    gsap.fromTo('.carousel-cell',{ scale: 0,borderRadius:'100%' }, { scale:1,borderRadius:'0%' ,duration:0.3,stagger:0.002,force3D:true })    
+    gsap.fromTo('.carousel-cell',{ scale: 0,borderRadius:'100%' }, { scale:1,borderRadius:'0%' ,duration:0.3,force3D:true,stagger: {
+      amount: 1.5, 
+      grid: [grid,grid],
+      from: 'start'
+    } })    
   }
 
   useEffect(()=>{

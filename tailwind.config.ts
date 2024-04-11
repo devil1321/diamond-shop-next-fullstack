@@ -29,7 +29,8 @@ const config: Config = {
         'figma-purple':'#FA00FF',
         'figma-orange':'#F1D129',
         'figma-strong-green':'#5CE72B',
-        'figma-dark-gray':'#7B7575'
+        'figma-dark-gray':'#7B7575',
+        'figma-brown':'#4B0000'
       }
     },
     

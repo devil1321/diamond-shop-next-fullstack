@@ -7,11 +7,11 @@ import '@/app/globals.css'
 const Layout:React.FC<{ children:React.ReactNode }> = ({children}) => {
   return (
     <div className='layout'>
-        <Nav />
         <div className="container-fluid">
+          <Nav />
           {children}
+          <Footer />
         </div>
-        <Footer />
     </div>
   )
 }

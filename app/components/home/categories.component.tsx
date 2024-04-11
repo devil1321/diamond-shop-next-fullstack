@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'   
+import React, { MutableRefObject, useEffect, useRef } from 'react'   
 import Image from 'next/image'
 import Link from 'next/link'
 import gsap from 'gsap'
@@ -7,6 +7,8 @@ import { splitText } from '@/app/controller/lib/split-text'
 
 const Categories = () => {
 
+  const heightRef_1 = useRef() as MutableRefObject<HTMLDivElement>
+  const heightRef_2 = useRef() as MutableRefObject<HTMLDivElement>
 
   const handleAnimateIn = (e:any) =>{
     e.stopPropagation()
@@ -60,45 +62,49 @@ const Categories = () => {
   }
 
   return (
-    <div className='categories flex-col md:flex-row md:flex md:justify-center md:items-start md:gap-5'>
-      <div className="categories-category cursor-pointer hover:shadow-lg transition-all mb-5 md:mb-0 hover:shadow-gray-500  relative top-0 left-0-col w-[100%] md:w-1/3 overflow-hidden md:h-[535px] lg:h-max">
+    <div className={`home-categoriesflex-col md:flex-row md:flex md:justify-center md:items-stretch  md:gap-5 max-h-fit overflow-hidden`}>
+      <div style={{
+        maxHeight:heightRef_1?.current?.clientHeight + heightRef_2?.current?.clientHeight + 20 + 'px'
+      }} className={`home-categories-category overflow-hidden home-categories-category-men cursor-pointer  transition-all mb-5 md:mb-0   relative top-0 left-0 w-[100%]  md:w-1/3`}>
         <Link href="/products">
-            <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer  relative top-0 left-0 w-max h-max">
-                <Image src="/assets/category-1.png" alt='' width={470} height={600} />
-                <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-3/4 -translate-y-1/2 font-bold text-white text-[80px]">Men</h2>
-                <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-3/4 -translate-y-1/2 font-bold text-white text-[80px]">Men</h2>
+            <div style={{
+              maxHeight:heightRef_1?.current?.clientHeight + heightRef_2?.current?.clientHeight + 20 + 'px'
+              }} onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="home-categories-category cursor-pointer  relative top-0 left-0">
+                <Image className='min-w-[200%]' src="/assets/category-1.png" alt='category-man' width={820} height={800} />
+                <h2 className="pointer-events-none categories-heading-men absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 font-bold text-white text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Men</h2>
+                <h2 className="pointer-events-none categories-heading-men absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 font-bold text-white text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Men</h2>
             </div>
         </Link>
       </div>
-      <div className="categories-category mb-5 md:mb-0 cursor-pointer relative top-0 left-0-col w-[100%] md:w-1/3 flex flex-col justify-start items-center gap-5">
-      <Link href="/products">
-        <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0">
+      <div  className="home-categories-category mb-5 md:mb-0 cursor-pointer relative top-0 left-0-col w-[100%] md:w-1/3 flex flex-col justify-start items-center gap-5">
+      <Link href="/products" >
+        <div ref={heightRef_1} onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="home-categories-category cursor-pointer  transition-all   relative top-0 left-0">
             <Image src="/assets/category-2.png" alt='' width={400} height={600} />
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[80px]">Woman</h2>
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[80px]">Woman</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Woman</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Woman</h2>
         </div>
       </Link>
-      <Link href="/products">
-        <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0">
+      <Link href="/products" >
+        <div ref={heightRef_2} onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="home-categories-category cursor-pointer  transition-all   relative top-0 left-0">
             <Image src="/assets/category-3.png" alt='' width={400} height={600} />
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[80px]">Shirts</h2>
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[80px]">Shirts</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Shirts</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Shirts</h2>
         </div>
       </Link>
       </div>
-      <div className="categories-category cursor-pointer relative top-0 left-0-col w-[100%] md:w-1/3 flex flex-col justify-start items-center gap-5">
+      <div className="home-categories-category cursor-pointer relative top-0 left-0-col w-[100%] md:w-1/3 flex flex-col justify-start items-center gap-5">
       <Link href="/products">
-        <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0">
+        <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="home-categories-category cursor-pointer  transition-all   relative top-0 left-0">
             <Image src="/assets/category-4.png" alt='' width={400} height={600} />
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[80px]">Suits</h2>
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[80px]">Suits</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Suits</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Suits</h2>
         </div>
       </Link>
       <Link href="/products">
-        <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="categories-category cursor-pointer hover:shadow-lg transition-all hover:shadow-gray-500  relative top-0 left-0">
+        <div onMouseEnter={(e)=>handleAnimateIn(e)} onMouseLeave={(e)=>handleAnimateOut(e)} className="home-categories-category cursor-pointer  transition-all   relative top-0 left-0">
             <Image src="/assets/category-5.png" alt='' width={400} height={600} />
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[80px]">Pants</h2>
-            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[80px]">Pants</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Pants</h2>
+            <h2 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-black text-[50px] md:text-[50px] lg:text-[70px] xl:text-[80px]">Pants</h2>
         </div>
       </Link>
       </div>

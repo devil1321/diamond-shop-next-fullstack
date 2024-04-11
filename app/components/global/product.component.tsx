@@ -58,7 +58,7 @@ const Product:React.FC<{product:any}> = ({product}) => {
           {product.colors.map((c:any) => <div onClick={(e)=>{ 
             handleColor(e)
             setColor(c.hex)
-          }} className='rounded-full mx-2 w-5 h-5 cursor-pointer p-3 border-[1px] border-transparent' style={{backgroundColor:`#${c.hex}`}}></div>)}-
+          }} className='rounded-full mx-2 w-5 h-5 cursor-pointer p-2 border-[1px] border-transparent' style={{backgroundColor:`#${c.hex}`}}></div>)}
         </div>
         <h3 ref={titleRef} className='product-title text-white font-bold mt-5 text-2xl text-center'>{product.title}</h3>
       </div>
@@ -66,7 +66,7 @@ const Product:React.FC<{product:any}> = ({product}) => {
         <button ref={button_1_ref} className="product-price block rounded-md mx-2 px-5 py-3 bg-figma-green font-bold text-white">{product.price}{currency}</button>
         <button ref={button_2_ref} className="product-price block rounded-md mx-2 px-5 py-3 bg-figma-green font-bold text-white line-through">{product.prevPrice}{currency}</button>
       </div>
-      <button ref={buyRef} className='product-buy block w-[75%] md:w-[90%] mx-auto -translate-y-[220px] rounded-md mx-2 px-5 py-3 bg-figma-green font-bold text-white'>Buy</button>
+      <button ref={buyRef} className='product-buy block w-[75%] md:w-[90%] -translate-y-[250px] rounded-md mx-auto px-5 py-3 bg-figma-green font-bold text-white'>Buy</button>
     </div>
   )
 }

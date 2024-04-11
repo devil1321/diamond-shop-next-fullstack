@@ -11,6 +11,8 @@ import { Provider } from "react-redux";
 import * as ApiActions from '@/app/controller/action-creators/api.action-creators'
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider store={store}>
+          <WithRedux>
             <Nav />
-            <div className="container-fluid">
-              <WithRedux>
-                {children}
-              </WithRedux>
-            </div>
+            {children}
             <Footer />
+          </WithRedux>
         </Provider>
       </body>
     </html>
@@ -44,6 +44,7 @@ const WithRedux:React.FC<{ children:React.ReactNode }> = ({children}) =>{
 
   useEffect(()=>{
     APIActions.setProducts()
+    gsap.registerPlugin(ScrollTrigger)
   },[])
 
   return(
