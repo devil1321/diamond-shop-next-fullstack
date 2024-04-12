@@ -6,7 +6,7 @@ import "../app/globals.css";
 function MyApp({ Component, pageProps }:{Component:any,pageProps:any}) {
   return (
     <Provider store={store}>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </Provider>
   );
 }

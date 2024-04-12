@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { Suspense } from "react";
+import LoadingSpinner from "./components/global/loading-spinner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,9 +28,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider store={store}>
           <WithRedux>
-            <Nav />
-            {children}
-            <Footer />
+              <Nav />
+              {children}
+              <Footer />
           </WithRedux>
         </Provider>
       </body>

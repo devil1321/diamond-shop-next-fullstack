@@ -4,6 +4,7 @@ import { CarouselComponents } from "./carousel";
 import Product from "./product.component";
 import Feature from "./feature.component";
 import Title from "./title.component";
+import Banner from "./banner.component";
 
 export const GlobalComponents = {
     Nav,
@@ -11,5 +12,6 @@ export const GlobalComponents = {
     CarouselComponents,
     Product,
     Feature,
-    Title
+    Title,
+    Banner
 }

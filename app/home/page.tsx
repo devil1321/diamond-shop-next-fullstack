@@ -21,7 +21,7 @@ export default function Home() {
       <div className="container-fluid">
         <HomeComponents.EventsComponents.Events />
       </div>
-      <div className="container">
+      <div className="container home-about-section mt-[1700px] md:mt-[800px] lg:mt-[300px]">
         <GlobalComponents.Title title="About Our Company" className="green-purple" start="-=350px" end="-=350px" />
         <GlobalComponents.Feature 
           img="/assets/about-1.png"
