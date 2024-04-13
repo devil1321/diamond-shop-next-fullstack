@@ -7,6 +7,7 @@ import useProduct from '@/app/hooks/useProduct'
 import { DetailsComponents } from '@/app/components/details'
 import { useSelector } from 'react-redux'
 import { State } from '@/app/controller/reducers/root.reducer'
+import products from '@/public/db/products.json'
 
 const Details:React.FC<{id:number}> = ({id}) => {
   
@@ -51,8 +52,6 @@ export async function getStaticProps({ params }:{ params:{ id:string }}){
 
 export async function getStaticPaths(){
     try{
-        const res = await axios.get('http://localhost:3000/db/products.json')
-        const products = await res.data
         const paths = products.map(({ id }:{ id:number }) => ({ params:{ id:id.toString() }}))
         return { paths ,fallback:false }
     }
