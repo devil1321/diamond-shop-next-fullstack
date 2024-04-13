@@ -49,10 +49,10 @@ const Form = () => {
           <div onClick={()=>handleMenu(sizesMenuRef)} className="products-menu-button cursor-pointer px-12 py-2 font-bold mx-2 text-white relative top-0 left-0 bg-figma-green">
             {size}
             <div  ref={sizesMenuRef}   className="products-menu z-10 absolute top-12 left-1/2 -translate-x-1/2 p-2 bg-figma-green">
-            <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>10</div>
-              <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>20</div>
-              <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>30</div>
-              <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>40</div>
+            <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>S</div>
+              <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>M</div>
+              <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>XL</div>
+              <div onClick={(e:any)=>setSize(e.target.textContent)} className='px-12 py-2 hover:bg-white/50'>XXL</div>
             </div>
           </div>
         </div>
