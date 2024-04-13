@@ -30,6 +30,7 @@
   .container-fluid{
     width: 100vw;
     margin:0px auto;
+    overflow-x: clip;
     max-width: 1920px;
   }
   .container{

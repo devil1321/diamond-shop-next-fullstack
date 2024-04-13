@@ -22,7 +22,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footer-col md:w-1/4">
+        <div className="footer-col mt-5 md:mt-0 md:w-1/4">
             <h3 className="text-2xl text-center">Contact With Us</h3>
             <form action="">
               <div className="footer-input p-2 bg-gray-200 rounded-md">
