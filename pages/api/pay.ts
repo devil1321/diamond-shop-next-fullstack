@@ -6,7 +6,9 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
         try{
             const { total,currency,description } = req.body
             if(description && total && description){
+                // @ts-ignore
                 const stripe = new Stripe(process.env.STRIPE as string,{
+                    // @ts-ignore
                     apiVersion: '2023-10-16'
                 });
                 const totalStripe = Math.round(total * 100).toFixed(0)
