@@ -122,8 +122,20 @@
   .banner-overlay{
     background: linear-gradient(90deg,#FA00FF,#00FFFF);
   }
+  .cart-quantity{
+    background: linear-gradient(90deg,#00FFFF,#FA00FF);
+  }
   .products-menu-button,.products-menu,.products-menu div{
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
+  }
+  .cart-item-details{
+    background: linear-gradient(90deg,#b6aaaaaf,rgba(0, 0, 0, 0.8));
+  }
+  .cart-summary{
+    background: linear-gradient(180deg,#b6aaaaaf,rgba(0, 0, 0, 1));
+  }
+  .favoruites-form{
+    background: linear-gradient(135deg,#b6aaaaaf,rgba(0, 0, 0, 1));
   }
 }

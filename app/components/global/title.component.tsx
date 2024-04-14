@@ -11,6 +11,7 @@ const Title:React.FC<{className:string; title:string,start:string,end:string}> =
   const handleAnimate = () =>{
     const split = new SplitTextJS(titleRef.current);
     if(className.includes('green-purple')){
+        titleRef.current.style.opacity = '1'
         gsap.fromTo([...split.chars].reverse(),{ x:-1000 ,opacity:0 },{ x:0,opacity:1,stagger:0.1,scrollTrigger:{
             trigger:titleRef.current,
             start:start,
@@ -19,6 +20,7 @@ const Title:React.FC<{className:string; title:string,start:string,end:string}> =
         onStart:()=>titleRef.current.classList.add('active')
       })
     }else if(className.includes('purple-green')){
+        titleRef.current.style.opacity = '1'
         gsap.fromTo(split.chars,{ x:1000 ,opacity:0 },{ x:0,opacity:1,stagger:0.1,scrollTrigger:{
             trigger:titleRef.current,
             start:start,
@@ -36,7 +38,7 @@ const Title:React.FC<{className:string; title:string,start:string,end:string}> =
   },[title,titleRef.current])
 
   return (
-    <h2 ref={titleRef} className={`title -mt-[70px] md:mt-[50px] mb-[100px] text-4xl md:text-[70px] text-center font-extralight relative top-0 left-0 ${className}`}>{title}</h2>
+    <h2 ref={titleRef} className={`title -mt-[70px] md:mt-[100px] opacity-0 mb-[100px] text-4xl md:text-[70px] text-center font-extralight relative top-0 left-0 ${className}`}>{title}</h2>
   )
 }
 
