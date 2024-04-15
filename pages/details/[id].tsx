@@ -7,7 +7,7 @@ import useProduct from '@/app/hooks/useProduct'
 import { DetailsComponents } from '@/app/components/details'
 import { useSelector } from 'react-redux'
 import { State } from '@/app/controller/reducers/root.reducer'
-import products from '@/public/db/products.json'
+import products from '@/public/assets/db/products.json'
 
 const Details:React.FC<{id:number}> = ({id}) => {
   
