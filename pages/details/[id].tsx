@@ -36,8 +36,6 @@ export default Details
 
 export async function getStaticProps({ params }:{ params:{ id:string }}){
     try{
-      const res = await axios.get('http://localhost:3000/db/products.json')
-      const products = await res.data
       const product = products.find((p:any) => p.id.toString() === params?.id?.toString())
       return {
         props: { id:product.id }
