@@ -6,7 +6,7 @@ import { State } from '@/app/controller/reducers/root.reducer'
 import useProduct from '@/app/hooks/useProduct'
 import useQuantity from '@/app/hooks/useQuantity'
 import { usePathname } from 'next/navigation'
-const Item:React.FC<{id:number}> = ({id}) => {
+const Item:React.FC<{id:number,color:any}> = ({id,color}) => {
 
   const [quantity,setQuantity] = useQuantity(id)
   const [product,setProduct] = useProduct(id)
@@ -29,7 +29,13 @@ const Item:React.FC<{id:number}> = ({id}) => {
       <div className="cart-item-details px-6 md:px-12 flex flex-col justify-center items-start rounded-[25px] min-w-[70%] h-[170px] md:-translate-x-1/3">
           <h3 className="font-bold text-2xl text-white">{product?.title}</h3>
           <div className="cart-colors flex gap-3">
-            {product?.colors?.map((c:any) => <div onClick={(e)=>handleColor(e)} style={{backgroundColor:`#${c.hex}`}} className='cart-color border-[1px] border-transparent my-2 w-5 h-5 rounded-full'></div>)}
+            {product?.colors?.map((c:any) => {
+              if(c.hex === color.hex){
+                return <div onClick={(e)=>handleColor(e)} style={{backgroundColor:`#${c.hex}`}} className='cart-color border-[1px] border-black my-2 w-5 h-5 rounded-full'></div>
+              }else{
+                return <div onClick={(e)=>handleColor(e)} style={{backgroundColor:`#${c.hex}`}} className='cart-color border-[1px] border-transparent my-2 w-5 h-5 rounded-full'></div>
+              }
+            })}
           </div>
           <div className="cart-item-inner-details flex justify-between md:justify-start xl:gap-3  items-center flex-wrap xl:flex-nowrap">
           <button className='rounded-bl-[25px] w-[45%]  xl:w-fit rounded-tr-[25px] px-6 h-8 text-white font-bold'>{product?.price}{currency}</button>

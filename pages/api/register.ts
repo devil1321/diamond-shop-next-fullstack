@@ -20,11 +20,9 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
                         bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS as string),(err,salt)=>{
                             bcrypt.hash(password_1 as string, salt, async function(err, hash) {
                                 try{
-                                    // @ts-ignore
-                                    const User = await client.userShop.create({
+                                    const User = await client.usershop.create({
                                         data:{
                                             nickname,
-                                            // @ts-ignore
                                             email,
                                             password:hash,
                                             first_name,

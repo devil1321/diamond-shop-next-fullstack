@@ -1,15 +1,20 @@
 'use client'
 import React, { MutableRefObject, useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import gsap from 'gsap'
-import { useSelector } from 'react-redux'
+import { useSelector ,useDispatch} from 'react-redux'
 import { State } from '@/app/controller/reducers/root.reducer'
+import * as ShopActions  from '@/app/controller/action-creators/shop.action-creators'
+import { bindActionCreators } from 'redux'
 
 const Product:React.FC<{product:any}> = ({product}) => {
 
   const { currency } = useSelector((state:State) => state.ui)
+  const dispatch = useDispatch()
+  const shopActions = bindActionCreators(ShopActions,dispatch)
 
-  const [color,setColor] = useState<string>('')
+  const [color,setColor] = useState<any>({})
 
   const plate_1_ref = useRef() as MutableRefObject<HTMLDivElement>
   const plate_2_ref = useRef() as MutableRefObject<HTMLDivElement>
@@ -22,7 +27,7 @@ const Product:React.FC<{product:any}> = ({product}) => {
   const handleColor = (e:any) =>{
     const colors = colorsRef.current.querySelectorAll("div")
     colors.forEach((c:HTMLDivElement)=>c.style.borderColor = 'transparent')
-    e.target.style.borderColor = 'white'
+    e.target.style.borderColor = 'black'
   }
 
   const handleOpen = () =>{
@@ -51,13 +56,15 @@ const Product:React.FC<{product:any}> = ({product}) => {
   return (
     <div className='product mb-5 cursor-pointer md:w-1/3' onMouseEnter={()=>handleOpen()} onMouseLeave={()=>handleClose()}>
       <div ref={plate_1_ref} className="product-plate relative z-20 left-0 top-0 mx-auto flex justify-center ronded-md overflow-hidden">
-        <Image className='mx-auto' src={product.img} alt="" width={300} height={300} />
+        <Link href="/details/[id]" as={`/details/${product.id}`}>
+          <Image className='mx-auto' src={product.img} alt="" width={300} height={300} />
+        </Link>
       </div>
       <div ref={plate_2_ref} className="product-plate relative top-0 left-0 z-10 -translate-y-[90%] mx-auto py-5 rounded-[25px] w-[320px] md:w-[350px]">
         <div ref={colorsRef} className="product-colors -translate-y-[20px] flex justify-center items-center">
           {product.colors.map((c:any) => <div onClick={(e)=>{ 
             handleColor(e)
-            setColor(c.hex)
+            setColor(c)
           }} className='rounded-full mx-2 w-5 h-5 cursor-pointer p-2 border-[1px] border-transparent' style={{backgroundColor:`#${c.hex}`}}></div>)}
         </div>
         <h3 ref={titleRef} className='product-title text-white font-bold mt-5 text-2xl text-center'>{product.title}</h3>
@@ -66,7 +73,7 @@ const Product:React.FC<{product:any}> = ({product}) => {
         <button ref={button_1_ref} className="product-price block rounded-md mx-2 px-5 py-3 bg-figma-green font-bold text-white">{product.price}{currency}</button>
         <button ref={button_2_ref} className="product-price block rounded-md mx-2 px-5 py-3 bg-figma-green font-bold text-white line-through">{product.prevPrice}{currency}</button>
       </div>
-      <button ref={buyRef} className='product-buy block w-[75%] md:w-[90%] -translate-y-[250px] rounded-md mx-auto px-5 py-3 bg-figma-green font-bold text-white'>Buy</button>
+      <button ref={buyRef} className='product-buy block w-[75%] md:w-[90%] -translate-y-[250px] rounded-md mx-auto px-5 py-3 bg-figma-green font-bold text-white' onClick={()=>shopActions.addToCart(product?.id,1,product.price,color)}>{product.inCart ? "In Cart" : "Buy"}</button>
     </div>
   )
 }

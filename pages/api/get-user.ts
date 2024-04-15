@@ -7,10 +7,10 @@ export default async function handler(req:NextApiRequest,res:NextApiResponse){
     if(req.method === 'POST'){
        let user = null
        let token = req.headers.authorization as string
-       if(/Bearer/gi.test(token)){
+       if(/Bearer/gi.test(token) && token !== 'undefined'){
            token = token?.slice(7,token.length)
        }
-       if(token !== 'null'){
+       if(token){
            user = jwt.verify(token as string,process.env.JWT_SECRET as string) as Interfaces.User
        }
        if(user){

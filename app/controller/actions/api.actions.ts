@@ -49,18 +49,16 @@ interface REGISTER {
     token:string;
     data:any;
 }
-interface UPDATE_CART {
-    type:APITypes.API_UPDATE_CART,
-    data:any;
-}
+
 
 interface UPDATE_PROFILE {
     type:APITypes.API_UPDATE_PROFILE,
     data:any;
+    image:string;
 }
 interface PAY {
     type:APITypes.API_PAY,
     paymentLink:string;
 }
 
-export type APIActions = GET_USER | TEST | SET_PRODUCTS | FILTER_PRODUCTS | CHANGE_CURRENCY | REGISTER | LOGIN | LOGOUT | UPDATE_CART | UPDATE_PROFILE | PAY
+export type APIActions = GET_USER | TEST | SET_PRODUCTS | FILTER_PRODUCTS | CHANGE_CURRENCY | REGISTER | LOGIN | LOGOUT  | UPDATE_PROFILE | PAY

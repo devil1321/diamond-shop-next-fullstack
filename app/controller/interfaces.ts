@@ -15,7 +15,7 @@ export interface Product{
     img:string;
     event:string | null;
     title:string;
-    colors:string[];
+    colors:any[];
     price:number;
     prevPrice:number;
     company:string;
@@ -27,4 +27,5 @@ export interface CartItem{
     id:number;
     quantity:number;
     price:number;
+    color:any
 }

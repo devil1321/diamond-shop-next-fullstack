@@ -75,6 +75,9 @@ export const getUser = () => async (dispatch:Dispatch)=>{
             }
         })
         const data = await res.data
+        if(data.token === 'undefined'){
+            localStorage.removeItem('jwt')
+        }
         dispatch({
             type:APITypes.API_GET_USER,
             user:data?.user?.data ? data.user.data : data.user,
@@ -94,6 +97,14 @@ export const setProducts = () => async(dispatch:Dispatch)=>{
     try{
         const res = await axios.get('/db/products.json')
         const data = await res.data
+        const prevProducts = store.getState().api.products
+        prevProducts.forEach((p:Interfaces.Product)=>{
+            data.forEach((ip:Interfaces.Product)=>{
+                if(p.id === ip.id){
+                    ip.inCart = p.inCart
+                }
+            })
+        })
         dispatch({
             type:APITypes.API_SET_PRODUCTS,
             products:data
@@ -164,35 +175,14 @@ export const login = (formData:any) => async(dispatch:Dispatch) =>{
 export const logout = () => async(dispatch:Dispatch) =>{
     if(typeof window !== 'undefined'){
         localStorage.removeItem('jwt')
+        setTimeout(() => {
+            if(typeof window !== 'undefined'){
+                window.location.href = "/"
+            }
+        }, 1000);
         dispatch({
             type:APITypes.API_LOGOUT,
             token:null,
-        })
-    }
-}
-export const updateCart = (cart:Interfaces.CartItem[],user:Interfaces.User) => async(dispatch:Dispatch) =>{
-    const token = getToken()
-    try{
-        const res = await axios.post('/api/update-cart',{
-            cart:cart,
-            user_id:user.id 
-        },{
-            headers:{
-                'Authorization':`Bearer ${token}`
-            }
-        })
-        const data = await res.data
-        dispatch({
-            type:APITypes.API_UPDATE_CART,
-            data:data
-        })
-    }catch(err){
-        console.log(err)
-        dispatch({
-            type:APITypes.API_UPDATE_CART,
-            data:{
-                msg:"Cart Not Updated"
-            }
         })
     }
 }
@@ -206,29 +196,31 @@ export const updateProfile = (user:Interfaces.User) => async(dispatch:Dispatch) 
         })
         const data = await res.data
         dispatch({
-            type:APITypes.API_UPDATE_CART,
-            data:data
+            type:APITypes.API_UPDATE_PROFILE,
+            data:data,
+            image:data.image
         })
     }catch(err){
         console.log(err)
         dispatch({
-            type:APITypes.API_UPDATE_CART,
+            type:APITypes.API_UPDATE_PROFILE,
             data:{
                 msg:"Profile Not Updated"
             }
         })
     }
 }
-export const filterProducts = (min:number,max:number,color:string) => async(dispatch:Dispatch) =>{
+export const filterProducts = (min:number,max:number,color:any) => async(dispatch:Dispatch) =>{
     try{
         const res = await axios.get('/db/products.json')
         let products = await res.data
         products = products.filter((p:Interfaces.Product) => {
             if(p.price > min && p.price < max){
-                if(p.colors.includes(color)){
+                const isColor = p.colors.find((p)=> p.hex === color.hex)
+                if(isColor){
                     return p
                 }else{
-                    return null 
+                    return null
                 }
             }
         }).filter((p:Interfaces.Product) => p !== null)

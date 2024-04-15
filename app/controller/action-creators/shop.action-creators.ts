@@ -3,13 +3,13 @@ import { ShopTypes } from "../types"
 import store from "../store"
 import * as Interfaces from '@/app/controller/interfaces'
 
-export const addToCart = (id:number,quantity:number,price:number) => (dispatch:Dispatch) =>{
+export const addToCart = (id:number,quantity:number,price:number,color:any) => (dispatch:Dispatch) =>{
     const { cart } = store.getState().shop
     const { products } = store.getState().api
     let tmpCart = cart
     const product = products.find((p:Interfaces.Product) => p.id === id) as Interfaces.Product
     product.inCart = true
-    tmpCart.push({ id, quantity,price })
+    tmpCart.push({ id, quantity,price,color })
     dispatch({
         type:ShopTypes.SHOP_ADD_TO_CART,
         cart:tmpCart

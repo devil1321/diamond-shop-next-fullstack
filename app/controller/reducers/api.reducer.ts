@@ -72,21 +72,6 @@ export default (state:InitState = initState,action:APIActions) =>{
                 user:action.user,
                 image:action.image
             }
-        case APITypes.API_UPDATE_CART:
-            return{
-                ...state,
-                data:action.data
-            }
-        case APITypes.API_UPDATE_PROFILE:
-            return{
-                ...state,
-                data:action.data
-            }
-        case APITypes.API_UPDATE_CART:
-            return{
-                ...state,
-                data:action.data
-            }
         case APITypes.API_PAY:
             return{
                 ...state,
@@ -97,6 +82,12 @@ export default (state:InitState = initState,action:APIActions) =>{
                     ...state,
                     products:action.products    
                 }
+        case APITypes.API_UPDATE_PROFILE:
+            return{
+                ...state,
+                data:action.data,
+                image:action.image
+            }
         default:
             return {
                 ...state
