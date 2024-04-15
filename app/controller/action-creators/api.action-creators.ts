@@ -7,7 +7,7 @@ import store from "../store"
 
 export const changeCurrency = (currency:string) => async(dispatch:Dispatch) =>{
     try{
-        const res = await axios.get('/db/products.json')
+        const res = await axios.get('/assets/db/products.json')
         const products = await res.data
         let actualCurrency = 0
         switch(currency){
@@ -212,7 +212,7 @@ export const updateProfile = (user:Interfaces.User) => async(dispatch:Dispatch) 
 }
 export const filterProducts = (min:number,max:number,color:any) => async(dispatch:Dispatch) =>{
     try{
-        const res = await axios.get('/db/products.json')
+        const res = await axios.get('/assets/db/products.json')
         let products = await res.data
         products = products.filter((p:Interfaces.Product) => {
             if(p.price > min && p.price < max){
