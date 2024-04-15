@@ -5,6 +5,10 @@ import * as Interfaces from '../interfaces'
 import { getToken } from '@/app/controller/lib/get-token'
 import store from "../store"
 
+axios.create({
+    baseURL:'https://diamond-shop-next-fullstack.vercel.app'
+})
+
 export const changeCurrency = (currency:string) => async(dispatch:Dispatch) =>{
     try{
         const res = await axios.get('/assets/products.json')
