@@ -37,8 +37,12 @@ export default Details
 export async function getStaticProps({ params }:{ params:{ id:string }}){
     try{
       const product = products.find((p:any) => p.id.toString() === params?.id?.toString())
-      return {
-        props: { id:product.id }
+      if(product){
+        return {
+          props: { id:product.id }
+        }
+      }else{
+        throw('product not loaded')
       }
     }catch(err){
       console.log(err)
