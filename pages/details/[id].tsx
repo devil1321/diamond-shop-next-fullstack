@@ -8,7 +8,7 @@ import { DetailsComponents } from '@/app/components/details'
 import { useSelector } from 'react-redux'
 import { State } from '@/app/controller/reducers/root.reducer'
 import products from '@/public/assets/db/products.json'
-
+import * as Interfaces from '@/app/controller/interfaces'
 const Details:React.FC<{id:number}> = ({id}) => {
   
   const [quantity,setQuantity] = useQuantity(id)
@@ -36,13 +36,9 @@ export default Details
 
 export async function getStaticProps({ params }:{ params:{ id:string }}){
     try{
-      const product = products.find((p:any) => p.id.toString() === params?.id?.toString())
-      if(product){
-        return {
-          props: { id:product.id }
-        }
-      }else{
-        throw('product not loaded')
+      const product = products.find((p:any) => p.id.toString() === params.id.toString()) as Interfaces.Product
+      return {
+        props: { id:product.id }
       }
     }catch(err){
       console.log(err)

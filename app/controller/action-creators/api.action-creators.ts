@@ -95,7 +95,7 @@ export const getUser = () => async (dispatch:Dispatch)=>{
 }
 export const setProducts = () => async(dispatch:Dispatch)=>{
     try{
-        const res = await axios.get('/db/products.json')
+        const res = await axios.get('/assets/db/products.json')
         const data = await res.data
         const prevProducts = store.getState().api.products
         prevProducts.forEach((p:Interfaces.Product)=>{
@@ -244,11 +244,35 @@ export const filterProducts = (min:number,max:number,color:any) => async(dispatc
         })
     }
 }
+export const searchProducts = (term:string) => async(dispatch:Dispatch) =>{
+    try{
+        const res = await axios.get('/assets/db/products.json')
+        let products = await res.data
+        const regex = new RegExp(`^${term}`,'gi')
+        products = products.filter((p:Interfaces.Product) => regex.test(p.title))
+        if(term === ''){
+            dispatch({
+                type:APITypes.API_SEARCH_PRODUCTS,
+                matches:[]
+            })
+        }else{
+            dispatch({
+                type:APITypes.API_SEARCH_PRODUCTS,
+                matches:products
+            })
+        }
+    }catch(err){
+        console.log(err)
+        dispatch({
+            type:APITypes.API_SEARCH_PRODUCTS,
+            matches:[]
+        })
+    }
+}
 export const pay = (total:number,currency:string,description:string) => async(dispatch:Dispatch) =>{
     try{
         const res = await axios.post('/api/pay',{total,currency,description})
         const data = await res.data
-        console.log(res?.data?.paymentLink)
         dispatch({
             type:APITypes.API_PAY,
             paymentLink:data?.paymentLink

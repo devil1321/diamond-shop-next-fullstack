@@ -7,16 +7,22 @@ const useQuantity = (id:number) => {
 
   const { cart } = useSelector((state:State) => state.shop)
   
-  const [quantity,setQuantity] = useState<number>(1)
+  const [quantity,setQuantity] = useState<number>(0)
+  const [item,setItem] = useState<any>()
 
   const handleQuantity = () =>{
     const item = cart.find((c:any) => c.id === id)
-    setQuantity(item?.quantity)
+    if(item){
+      setItem(item)
+      setQuantity(item?.quantity)
+    }else{
+      setQuantity(0)
+    }
   }
 
   useEffect(()=>{
     handleQuantity()
-  },[cart.length,id])
+  },[cart.length,item?.quantity,id])
 
   return [quantity,setQuantity]
 }

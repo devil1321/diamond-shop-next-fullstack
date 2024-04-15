@@ -1,11 +1,21 @@
 'use client'
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import * as ApiActions from '@/app/controller/action-creators/api.action-creators'
+import { useDispatch, useSelector } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { State } from '@/app/controller/reducers/root.reducer'
+import Link from 'next/link'
 
 const Form = () => {
 
+  const dispatch = useDispatch()
+  const APIActions = bindActionCreators(ApiActions,dispatch)
+  const { matches } = useSelector((state:State) => state.api)
+
   const [cloth,setCloth] = useState<string>('Cloth')
   const [size,setSize] = useState<string>('Size:')
+  const [term,setTerm] = useState<string>('')
 
   const clothesMenuRef = useRef() as MutableRefObject<HTMLDivElement> 
   const sizesMenuRef = useRef() as MutableRefObject<HTMLDivElement> 
@@ -31,6 +41,11 @@ const Form = () => {
   useEffect(()=>{
     handleInitMenus()
   },[sizesMenuRef.current,clothesMenuRef.current])
+
+
+  useEffect(()=>{
+    APIActions.searchProducts(term)
+  },[term])
 
   return (
     <div className='products-form-wrapper'>
@@ -58,10 +73,14 @@ const Form = () => {
         </div>
       </div>
       <form action="" className='block my-12'>
-        <div className="products-form-field bg-gray-300 p-4 rounded-lg">
-          <input placeholder='Search Items' type="text" />
+        <div className="products-form-field bg-gray-300 p-4 rounded-lg relative top-0 left-0">
+          <input placeholder='Search Items' value={term} onChange={(e)=>setTerm(e.target.value)} type="text" />
+          {matches.length > 0 && 
+            <div className='products-matches z-20 absolute w-[100%] p-2 top-14 left-1/2 -translate-x-1/2 bg-neutral-800 rounded-md overflow-hidden text-white'>
+              {matches.map((m:any)=><Link href="/details/[id]" as={`/details/${m.id}`} className='block rounded-md px-2 py-2 italic hover:bg-neutral-600'>{m.title}</Link>)}
+            </div>
+          }
         </div>
-        <button className="font-bold p-4 text-white block w-[100%] my-2 rounded-lg">Search</button>
       </form>
     </div>
   )

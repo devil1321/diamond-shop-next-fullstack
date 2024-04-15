@@ -20,6 +20,10 @@ interface SET_PRODUCTS{
     products:Interfaces.Product[]
 }
 
+interface SEARCH_PRODUCTS{
+    type:APITypes.API_SEARCH_PRODUCTS,
+    matches:Interfaces.Product[]
+}
 interface FILTER_PRODUCTS{
     type:APITypes.API_FILTER_PRODUCTS,
     products:Interfaces.Product[]
@@ -61,4 +65,4 @@ interface PAY {
     paymentLink:string;
 }
 
-export type APIActions = GET_USER | TEST | SET_PRODUCTS | FILTER_PRODUCTS | CHANGE_CURRENCY | REGISTER | LOGIN | LOGOUT  | UPDATE_PROFILE | PAY
+export type APIActions = GET_USER | TEST | SET_PRODUCTS | FILTER_PRODUCTS | SEARCH_PRODUCTS | CHANGE_CURRENCY | REGISTER | LOGIN | LOGOUT  | UPDATE_PROFILE | PAY

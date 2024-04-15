@@ -6,6 +6,7 @@ interface InitState {
     data:any;
     user:any;
     products:Interfaces.Product[]
+    matches:Interfaces.Product[]
     token:any;
     image:string;
     paymentLink:string;
@@ -14,6 +15,7 @@ interface InitState {
 const initState:InitState = {
     data:null,
     products:[],
+    matches:[],
     token:null,
     user:null,
     image:'',
@@ -81,6 +83,11 @@ export default (state:InitState = initState,action:APIActions) =>{
                 return{
                     ...state,
                     products:action.products    
+                }
+        case APITypes.API_SEARCH_PRODUCTS:
+                return{
+                    ...state,
+                    matches:action.matches    
                 }
         case APITypes.API_UPDATE_PROFILE:
             return{

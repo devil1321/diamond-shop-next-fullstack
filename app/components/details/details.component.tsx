@@ -1,9 +1,15 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import * as ShopActions from '@/app/controller/action-creators/shop.action-creators'
+import { useDispatch } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 const Details:React.FC<{product:any,quantity:number,currency:string}> = ({product,quantity,currency}) => {
 
   const [size,setSize] = useState<string>('S')
+  const [color,setColor] = useState<any>({})
+  const dispatch = useDispatch()
+  const shopActions = bindActionCreators(ShopActions,dispatch)
 
   const menuRef = useRef() as MutableRefObject<HTMLDivElement>
 
@@ -47,6 +53,7 @@ const Details:React.FC<{product:any,quantity:number,currency:string}> = ({produc
       <div className="details-colors-and-sizes my-5 flex justify-between items-center">
         <div className='details-colors w-1/2 flex justify-center items-center'>{product?.colors?.map((c:any)=><div onClick={(e)=>{
           handleColor(e)
+          setColor(c)
           }} style={{backgroundColor:`#${c.hex}`}} className='details-color cursor-pointer h-5 w-5 rounded-full mx-2 border-transparent border-[1px]'></div>)}
         </div>
         <div className="details-sizes w-1/2 relative top-0 left-0">
@@ -68,13 +75,24 @@ const Details:React.FC<{product:any,quantity:number,currency:string}> = ({produc
         </div>
       </div>
       <div className="details-quantity flex justify-center items-center gap-3">
-        <div className='w-[32%] rounded-md h-8 flex justify-center items-center hover:opacity-50 cursor-pointer font-bold text-center text-white bg-figma-green'>-</div>
-        <div className='w-[32%] rounded-md h-8 flex justify-center items-center hover:opacity-50 cursor-pointer font-bold text-center text-white bg-figma-purple'>1</div>
-        <div className='w-[32%] rounded-md h-8 flex justify-center items-center hover:opacity-50 cursor-pointer font-bold text-center text-white bg-figma-green'>+</div>
+        <div onClick={()=>{
+          if(!Boolean(quantity > 1)){
+            shopActions.removeFromCart(product.id)
+          }else if(quantity > 0){
+            shopActions.decrement(product.id,1)
+          }
+        }} className='w-[32%] rounded-md h-8 flex justify-center items-center hover:opacity-50 cursor-pointer font-bold text-center text-white bg-figma-green'>-</div>
+        <div className='w-[32%] rounded-md h-8 flex justify-center items-center hover:opacity-50 cursor-pointer font-bold text-center text-white bg-figma-purple'>{quantity}</div>
+        <div onClick={()=>{
+          if(!Boolean(quantity > 0)){
+          }else{
+            shopActions.increment(product.id,1)
+          }
+        }} className='w-[32%] rounded-md h-8 flex justify-center items-center hover:opacity-50 cursor-pointer font-bold text-center text-white bg-figma-green'>+</div>
       </div>
       {product?.inCart 
         ? <button className='block w-[100%] my-2 font-bold text-white rounded-md'>In Cart</button>
-        : <button className='block w-[100%] my-2 font-bold text-white rounded-md'>Buy</button>
+        : <button onClick={()=>shopActions.addToCart(product?.id,1,product?.price,color)} className='block w-[100%] my-2 font-bold text-white rounded-md'>Buy</button>
       }
     </div>
   )
