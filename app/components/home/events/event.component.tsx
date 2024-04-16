@@ -53,16 +53,16 @@ const Event:React.FC<EventProps> = ({img,maxInvinites,startDate}) => {
     <div className='home-event lg:my-0 md:w-[48%] lg:w-[22%] relative top-0 left-0 my-[100px] md:my-0'>
       <div className="home-event-image z-20 relative top-0 left-0 rounded-[25px] overflow-hidden">
         <Image className='block mx-auto' src={img} alt='event-image' width={400} height={400} />
-        <div className="hme-event-countdown absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-3">
+        <div className="home-event-countdown absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-3">
           <div className="bg-white/50 text-white w-[50px] h-[40px] rounded-md font-bold text-2xl flex justify-center items-center" >{days}</div>
           <div className="bg-white/50 text-white w-[50px] h-[40px] rounded-md font-bold text-2xl flex justify-center items-center" >{hours}</div>
           <div className="bg-white/50 text-white w-[50px] h-[40px] rounded-md font-bold text-2xl flex justify-center items-center" >{minutes}</div>
           <div className="bg-white/50 text-white w-[50px] h-[40px] rounded-md font-bold text-2xl flex justify-center items-center" >{seconds}</div>
         </div>
       </div>
-      <div className="event-details-bg bg-white/50 z-10 rounded-[25px] w-[100%] h-[200px] absolute -bottom-[50px] left-0">
+      <div className="event-details-bg bg-white/50 z-10 rounded-[25px] w-[100%] h-[200px] absolute -bottom-[50px]  left-0">
       </div>
-        <div className="event-invinites absolute top-[135%] md:top-[125%] xl:top-[135%] left-1/2 -translate-x-1/2 z-20 px-10 py-5 -translate-y-[120px] bg-white/50 rounded-[25px] font-bold text-2xl text-center w-[40%] mx-auto">{invinites}</div>
+        <div className="event-invinites absolute top-[135%] md:top-[125%] lg:top-[150%] xl:top-[135%] left-1/2 -translate-x-1/2 z-20 xl:px-10 lg:py-3 xl:py-5 -translate-y-[120px] bg-white/50 rounded-[25px] font-bold text-2xl text-center w-[40%] mx-auto">{invinites}</div>
     </div>
   )
 }

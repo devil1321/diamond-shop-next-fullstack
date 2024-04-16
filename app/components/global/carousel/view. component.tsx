@@ -34,11 +34,11 @@ const View = () => {
       const handleGrid = () => {
         if (typeof window !== 'undefined') {
           if (window.innerWidth >= 1280) {
-              setGrid(25);
-          } else if (window.innerWidth < 1280 && window.innerWidth >= 768) {
               setGrid(10);
+          } else if (window.innerWidth < 1280 && window.innerWidth >= 768) {
+              setGrid(6);
           } else {
-              setGrid(5);
+              setGrid(4);
           }
         }   
     }

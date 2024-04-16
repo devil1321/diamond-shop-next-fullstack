@@ -37,11 +37,11 @@ const Details = () => {
   },[carouselCount])
 
   return (
-    <div className="carousel-details absolute z-10 top-[40%] left-[10%]">
+    <div className="carousel-details w-3/4 md:w-max absolute z-10 top-[40%] left-[10%]">
       {[nodes[carouselCount]].map(({title,paragraph}:{title:string,paragraph:string}) => 
         <div className='relative top-0 left-0' key={`key-${title}`}>
-          <h1 className="absolute top-0 left-0 w-max font-bold md:mb-0 text-5xl md:text-[80px] xl:text-[100px] text-white">{title}</h1>
-          <p className='absolute top-[200px] xl:top-[250px] left-0 w-max text-white text-sm relative w-[80%]'>{paragraph}</p>
+          <h1 className="absolute top-0 left-0 md:w-max font-bold md:mb-0 text-5xl md:text-[80px] xl:text-[100px] text-white">{title}</h1>
+          <p className='absolute top-[200px] md:w-max xl:top-[250px] left-0 text-white text-sm relative w-[80%]'>{paragraph}</p>
         </div>
       )}
     </div>

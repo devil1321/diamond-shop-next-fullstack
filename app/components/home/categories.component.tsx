@@ -62,7 +62,7 @@ const Categories = () => {
   }
 
   return (
-    <div className={`home-categoriesflex-col md:flex-row md:flex md:justify-center md:items-stretch  md:gap-5 max-h-fit overflow-hidden`}>
+    <div className={`home-categoriesflex-col mb-[100px] md:mb-0 md:flex-row md:flex md:justify-center md:items-stretch  md:gap-5 max-h-fit overflow-hidden`}>
       <div style={{
         maxHeight:heightRef_1?.current?.clientHeight + heightRef_2?.current?.clientHeight + 20 + 'px'
       }} className={`home-categories-category overflow-hidden home-categories-category-men cursor-pointer  transition-all mb-5 md:mb-0   relative top-0 left-0 w-[100%]  md:w-1/3`}>
